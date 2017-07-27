@@ -1,3 +1,6 @@
+# Move Your Filters
+
+This project will contain code from a Microsoft OneWeek Hackathon project helping people create Outlook rules and folders to better organize incoming email.
 
 # Contributing
 
