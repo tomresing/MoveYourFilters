@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Make the Swtich: Gmail</title>
+    <meta charset='utf-8' />
+  </head>
+  <body>
+    <H1>Switch</H1>
+    <p>Gmail access:</p>
+
+    <!--Add buttons to initiate Gmail API auth sequence and sign out-->
+    <button id="authorize-button" style="display: none;">Authorize</button>
+    <button id="signout-button" style="display: none;">Sign Out</button>
+
+    <div id="content"></div>
+
+    <script type="text/javascript">
+      // Google APIs OAuth Web Client ID and API key from the Developer Console
+      var CLIENT_ID = '319613019463-2gm5ai0a9676ku1nmcbdt68oq1ihn2kd.apps.googleusercontent.com';
+
+      // Array of Google API discovery doc URLs for APIs (from the Gmail API quickstart example)
+      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
+
+      // Authorization scopes required to read Gmail filters.
+      var SCOPES = 'https://www.googleapis.com/auth/gmail.settings.basic';
+
+      var authorizeButton = document.getElementById('authorize-button');
+      var signoutButton = document.getElementById('signout-button');
+
+      /**
+       *  On load, called to load the auth2 library and API client library.
+       */
+      function handleClientLoad() {
+        gapi.load('client:auth2', initClient);
+      }
+
+      /**
+       *  Initializes the API client library and sets up sign-in state
+       *  listeners.
+       */
+      function initClient() {
+        gapi.client.init({
+          discoveryDocs: DISCOVERY_DOCS,
+          clientId: CLIENT_ID,
+          scope: SCOPES
+        }).then(function () {
+          // Listen for sign-in state changes.
+          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+          // Handle the initial sign-in state.
+          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          authorizeButton.onclick = handleAuthClick;
+          signoutButton.onclick = handleSignoutClick;
+        });
+      }
+
+      /**
+       *  Called when the signed in status changes, to update the UI
+       *  appropriately. After a sign-in, the API is called.
+       */
+      function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+          authorizeButton.style.display = 'none';
+          signoutButton.style.display = 'block';
+          listFilters();
+        } else {
+          authorizeButton.style.display = 'block';
+          signoutButton.style.display = 'none';
+        }
+      }
+
+      /**
+       *  Sign in the user upon button click.
+       */
+      function handleAuthClick(event) {
+        gapi.auth2.getAuthInstance().signIn();
+      }
+
+      /**
+       *  Sign out the user upon button click.
+       */
+      function handleSignoutClick(event) {
+        gapi.auth2.getAuthInstance().signOut();
+      }
+
+      /**
+       * Append a span element to the div with id content containing the given message
+       * as its text node. Used to display the results of the API call.
+       *
+       * @param {string} message Text to be placed in pre element.
+       */
+      function appendSpan(message) {
+        var parentDiv = document.getElementById('content');
+        var childSpan = document.createElement("span");
+        var textContent = document.createTextNode(message);
+        parentDiv.appendChild(childSpan).appendChild(textContent);
+      }
+
+      /**
+       * Append a div element to the div with id content containing the given message
+       * as its text node. Used to display the results of the API call.
+       *
+       * @param {string} message Text to be placed in pre element.
+       */
+      function appendDiv(message) {
+        var parentDiv = document.getElementById('content');
+        var childDiv = document.createElement("div");
+        var textContent = document.createTextNode(message);
+        parentDiv.appendChild(childDiv).appendChild(textContent);
+      }
+      /**
+       * Print all Filters in the authorized user's settings. If no filters
+       * are found an appropriate message is printed.
+       */
+      function listFilters() {
+        gapi.client.gmail.users.settings.filters.list({
+          'userId': 'me'
+        }).then(function(response) {
+          var filters = response.result.filter;
+          appendDiv('Gmail filter:');
+          appendDiv("--");
+          if (filters && filters.length > 0) {
+            for (i = 0; i < filters.length; i++) {
+              var filter = filters[i];
+              if (filter.criteria.from && filter.action.addLabelIds && filter.action.removeLabelIds=="INBOX") {
+                appendDiv("When email is from: " + filter.criteria.from);
+                appendDiv("Remove from Inbox and apply label: " + filter.action.addLabelIds);
+                appendDiv("-");
+              }
+            }
+          } else {
+            appendDiv('No Filters found.');
+          }
+        });
+      }
+
+    </script>
+
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+  </body>
+</html>
