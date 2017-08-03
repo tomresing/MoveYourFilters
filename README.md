@@ -2,6 +2,10 @@
 
 This project contains test code from a Microsoft OneWeek Hackathon project helping people create Outlook rules and folders to better organize incoming email.
 
+# Setup
+
+Current code is all client-side Javascript. The dependecies are currently setup through CDN. To test locally, clone the repo and start a webserver at port 8000.
+
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
