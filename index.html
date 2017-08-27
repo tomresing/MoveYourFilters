@@ -1,22 +1,72 @@
 <!DOCTYPE html>
 <html>
-	<head>
-<title>Switch: Outlook</title>
+<head>
+	<title>Switch: Outlook</title>
 	<meta charset='utf-8' />
-	</head>
-<body>
-<h1>Switch: Outlook </h1>
+	<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/4.1.0/css/fabric.min.css">	
+	<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.min.css" />
+	<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.components.min.css" />
+	<style>
+		body {
+			max-width: 1200px;
+			margin: 30px auto;
+		}
+		.ms-DetailsList {
+			max-width: 450px;
+			margin: 30px auto;
+		}
+		.ms-DetailsList td {
+			vertical-align: -webkit-baseline-middle;
+		}
+		td.ms-DetailsRow-cell:nth-of-type(1) {
+			margin: 0 0 0 15px;
+		}
+		td.ms-DetailsRow-cell:nth-of-type(2) {
+			width: 30%;
+		}
+		tr:first-of-type {
+			border-bottom: 1px solid #2488d8;
+		}
+	</style>
+</head>
+<body class="ms-u-textAlignCenter">
+<h1 class="ms-fontSize-su ms-fontColor-themePrimary">Switch: Outlook </h1>
+<p class="ms-fontSize-xxl">Convert your Gmail filters to Outlook rules</p>
+<p class="ms-fontSize-xl">This app needs permission to access these accounts</p>
 
 <p><a href="switch.html">Switch: Gmail</a></p>
 
-<button id="authaad" onclick="login('aad');">Connect to Outlook</button>
+<table class="ms-DetailsList ms-u-borderBase ms-fontSize-xl ms-u-textAlignLeft">
+	<tr class="ms-DetailsRow" tabindex="0">
+		<td class="ms-DetailsRow-cell ms-fontWeight-semibold">
+			<i class="ms-Icon ms-Icon--Mail ms-fontSize-su" aria-hidden="true"></i>
+		</td>
+		<td class="ms-DetailsRow-cell ms-fontWeight-semibold">
+			Gmail
+		</td>
+		<td class="ms-DetailsRow-cell">to access your filters</td>
+	</tr>
+	<tr class="ms-DetailsRow" tabindex="1">
+		<td class="ms-DetailsRow-cell ms-fontWeight-semibold">
+			<i class="ms-Icon ms-Icon--Mail ms-fontSize-su" aria-hidden="true"></i>
+		</td>
+		<td class="ms-DetailsRow-cell ms-fontWeight-semibold">
+			Outlook
+		</td>
+		<td class="ms-DetailsRow-cell">to create rules</td>
+	</tr>
+</table>
+
+<button id="authaad" onclick="login('aad');" class="ms-Button ms-Button--primary">
+	<span class="ms-Button-label">Connect to Outlook</span>
+</button>
 
 <pre class="response"></pre>
 
-<!--<script src="./bower_components/hello/dist/hello.all.js" class="pre"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hellojs/2.0.0-1/hello.all.js"></script>
-<script src="aad.js" class="pre"></script>
-<script class="pre">
+<script src="aad.js"></script>
+<script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
+<script type="text/javascript">
 function login(network){
 	// By defining response type to code, the OAuth flow that will return a refresh token to be used to refresh the access token
 	// However this will require the oauth_proxy server
@@ -55,10 +105,8 @@ function logout(network){
 // 		alert("Data: " + data.toString());
 // 	});
 // }
-</script>
 
 
-<script class="pre">
 
 // TODO: Register your app and put your client/app id below
 hello.init({
@@ -67,13 +115,12 @@ hello.init({
 	redirect_uri: '../index.html',
 	scope: 'mailboxsettings.read'
 });
-</script>
 
-<script>
 function log(s){
 	document.body.querySelector('.response').appendChild(document.createTextNode("\n\n" + JSON.stringify(s, true, 2)));
 }
 </script>
 
+</body>
 
 </html>
