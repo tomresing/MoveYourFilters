@@ -1,3 +1,4 @@
+
 # Move Your Filters
 
 This project contains test code from a Microsoft OneWeek Hackathon project helping people create Outlook rules and folders to better organize incoming email.
@@ -34,6 +35,9 @@ MVP list: move based on email address or content keywords, move to folders, chec
 # Office UI Fabric Prototype Design
 
 The prototype design was created based on Office UI Fabric and the three proposed screens are pictured below.
+![alt text](https://github.com/Microsoft/MoveYourFilters/blob/master/Slide2.PNG "Intro screen")
+![alt text](https://github.com/Microsoft/MoveYourFilters/blob/master/Slide3.PNG "List filters screen")
+![alt text](https://github.com/Microsoft/MoveYourFilters/blob/master/Slide4.PNG "Success screen")
 
 # Contributing
 
