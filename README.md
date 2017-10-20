@@ -8,7 +8,8 @@ This project contains test code from a Microsoft OneWeek Hackathon project helpi
 
 > *Customer #1*
 
-When an organization chooses to move or explores moving to Office 365 from Google's GSuite, they run into lots of challenges. One challenge with switching was discovered recently: the need to create new Outlook rules. A Google customer was moving over. Some employees found themselves in a bad situation when they were moved over without their filters. Their inboxes were filling at a rapid rate! We have example rules from one user and have made initial contact with  IT who is helping their employees make the switch. Also, team members have worked on "Make the Switch" guides for Google's GSuite for support.office.com recently. Gmail offers filters, not rules, so the move may not always be one to one. However, many filters can be moved over directly to rules in Outlook. We'll concentrate on those as our MVP product and hope to leverage open source to grow from there.
+When an organization chooses to move or explores moving to Office 365 from Google's GSuite, they run into lots of challenges. One challenge with switching was discovered recently: the need to create new Outlook rules. A Google customer was moving over. Some employees found themselves in a bad situation when they were moved over without their filters. Their inboxes were filling at a rapid rate! We collected some example rules from one user.
+Gmail offers filters, not rules, so the move may not always be one to one. However, many filters can be moved over directly to rules in Outlook. We'll concentrate on those as our intial product. We hope to leverage this open source project both to complete that initial offering and then to grow from there.
 
 # Setup
 
