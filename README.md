@@ -15,6 +15,26 @@ Gmail offers filters, not rules, so the move may not always be one to one. Howev
 
 Current code is all client-side Javascript. The dependecies are currently setup through CDN. To test locally, clone the repo and start a webserver at port 8000.
 
+# Project Steps
+
+## Completed
+
+Code to authenticate to Google and list filters via API
+Code to authenticate to Microsoft Graph API with Outlook write access for rules
+
+## Proposed
+
+Code to process exported filters XML file
+Code to create new Outlook rules in Graph API
+
+### Proposed logic for creating new rules in Outlook
+
+MVP list: move based on email address or content keywords, move to folders, check for existing folders, create new folders, and mark as read
+
+# Office UI Fabric Prototype Design
+
+The prototype design was created based on Office UI Fabric and the three proposed screens are pictured below.
+
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
